@@ -22,25 +22,15 @@ class UserAuthenticationController extends Controller
             if ($adminPassword != "ewX9EjHwldCUuHl") {
                 return response()->json(['message' => 'Error: invalid admin password']);
             }
-            else {
-                $user = User::create([
-                    'name' => $name,
-                    'email' => $email,
-                    'password' => Hash::make($password),
-                    'isAdmin' => 1,
-                    'adminPassword' => "ewX9EjHwldCUuHl"
-                ]);
-            }
         }
-        else {
-            $user = User::create([
-                'name' => $name,
-                'email' => $email,
-                'password' => Hash::make($password),
-            ]);
-        }
-
-
+        
+        $user = User::create([
+            'name' => $name,
+            'email' => $email,
+            'password' => Hash::make($password),
+            'isAdmin' => $isAdmin,
+            'adminPassword' => $adminPassword
+        ]);
 
         $token = $user->createToken('auth_token')->plainTextToken;
 
