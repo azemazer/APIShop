@@ -13,3 +13,5 @@ class Item extends Model
         'title', 'price', 'description', 'image_url'
     ];
 }
+
+
