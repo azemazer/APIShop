@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserAuthenticationController;
@@ -26,6 +27,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     //All USER ONLY ROUTES
     Route::post('logout', [UserAuthenticationController::class, 'logout']);
+
+    Route::post('cart', [CartController::class, 'store'])->name('cart.store');
+    Route::get('cart', [CartController::class, 'show'])->name('cart.show');
 });
 
 Route::group(['middleware' => ['auth:sanctum', IsAdmin::class]], function () {

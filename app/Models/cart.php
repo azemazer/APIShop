@@ -8,38 +8,26 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class cart extends Model
+class Cart extends Model
 {
     use HasFactory;
     
-        public function comments(): BelongsToMany
-        {
-            return $this->BelongsToMany(item::class);
-        }
-    
-}
+    protected $fillable = [
+        'totalPrice'
+    ];
 
-class User extends Model
-{
-    /**
-     * Get the phone associated with the user.
-     */
-    
+    public function items(): BelongsToMany
+    {
+        return $this->belongsToMany(Item::class);
+    }
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
-
-   
+    
 }
 
 
-class Item extends model 
-{
-    public function comments(): HasMany
-    {
-        return $this->hasMany(cart::class);
-    }
-}
 
 
