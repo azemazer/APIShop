@@ -32,7 +32,7 @@ Route::group(['middleware' => ['auth:sanctum', IsAdmin::class]], function () {
 
     //ALL ADMIN ONLY ROUTES
     Route::post('item', [ItemController::class, 'store'])->name('item.store');
-    Route::put('item/{item}', [ProductsController::class, 'update'])->name('item.update');
+    Route::put('item/{item}', [ItemController::class, 'update'])->name('item.update');
     Route::delete('item/{item}', [ItemController::class, 'destroy'])->name('item.destroy');
 });
 
