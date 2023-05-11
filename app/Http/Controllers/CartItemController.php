@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cart;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Resources\CartResource;
-use Illuminate\Support\Facades\Auth;
-use App\Models\Item;
 
-class CartController extends Controller
+class CartItemController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,31 +20,24 @@ class CartController extends Controller
      */
     public function create()
     {
+        //
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store()
+    public function store(Request $request)
     {
-        $user = Auth::user();
-        $cart = new Cart();
-        $user->cart()->save($cart);
+        //
+        
     }
 
     /**
      * Display the specified resource.
      */
-    public function show()
+    public function show(string $id)
     {
-        $userid = auth()->id();
-        // DD ($userid);
-        $cart = Cart::find($userid);
-
-        foreach ($cart->items as $item) {
-            $cart->itemList += $item->title." ";
-        }
-        return new CartResource($cart);
+        //
     }
 
     /**
@@ -73,15 +63,4 @@ class CartController extends Controller
     {
         //
     }
-
-    public function addItem(request $request){
-
-        $userid = auth()->id();
-        // DD ($userid);
-        $cart = Cart::find($userid);
-        $item = Item::find($request->input("item_id"));
-        $item->carts()->attach($cart);
-    
-    }
-
 }

@@ -27,9 +27,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     //All USER ONLY ROUTES
     Route::post('logout', [UserAuthenticationController::class, 'logout']);
-
     Route::post('cart', [CartController::class, 'store'])->name('cart.store');
     Route::get('cart', [CartController::class, 'show'])->name('cart.show');
+    Route::post('addItem', [CartController::class, 'addItem'])->name('cart.addItem');
 });
 
 Route::group(['middleware' => ['auth:sanctum', IsAdmin::class]], function () {
