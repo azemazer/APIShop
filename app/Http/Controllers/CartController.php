@@ -40,13 +40,14 @@ class CartController extends Controller
      */
     public function show()
     {
-        $userid = auth()->id();
+        $user = Auth::user();
         // DD ($userid);
-        $cart = Cart::find($userid);
+        $cart = $user->cart;
+        // DD ($cart);
 
-        foreach ($cart->items as $item) {
-            $cart->itemList += $item->title." ";
-        }
+        // foreach ($cart->items as $item) {
+        //     $cart->itemList += $item->title;
+        // }
         return new CartResource($cart);
     }
 
@@ -80,7 +81,7 @@ class CartController extends Controller
         // DD ($userid);
         $cart = Cart::find($userid);
         $item = Item::find($request->input("item_id"));
-        $item->carts()->attach($cart);
+        $item->cart()->attach($cart);
     
     }
 

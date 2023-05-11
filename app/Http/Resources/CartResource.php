@@ -14,11 +14,19 @@ class CartResource extends JsonResource
      */
     public function toArray($request)
     {
+        $listitems = $this->items;
+        $itemnames = " ";
+        $totalPrice = 0.00;
+        foreach ($listitems as $item) {
+            $itemnames = $itemnames.$item->title." ";
+            $totalPrice += $item->price;
+        }
+
         return [
             'id' => $this->id,
             'user_id' => $this->user_id,
-            'totalPrice' => "$" . $this->totalPrice,
-            'itemList'=> $this->itemList,
+            'totalPrice' => "€" . $totalPrice,
+            'itemnames' => $itemnames
         ];
     }
 }
