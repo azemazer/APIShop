@@ -30,6 +30,10 @@ class CartController extends Controller
     public function store()
     {
         $user = Auth::user();
+        $cartAlready = Cart::find(auth()->id());
+        if ($cartAlready != null) {
+            return "Vous avez déjà un cart.";
+        }
         $cart = new Cart();
         $user->cart()->save($cart);
     }

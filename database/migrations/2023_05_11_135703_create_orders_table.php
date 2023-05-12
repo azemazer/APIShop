@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignid("user_id")->constrained();
-            $table->array("listItems")->nullable();
+            // $table->array("listItems")->nullable();
             $table->timestamps();
         });
     }
